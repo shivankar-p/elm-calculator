@@ -18,65 +18,12 @@ type Msg  =     Add
               | Clear
               | Input String
 
-button_strings = ["1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "x", "0", ".", "=", "/"]
-new_list = List.indexedMap 
+
+get_btn_layout: List String -> List(List(Svg Msg))
+get_btn_layout button_strings = List.indexedMap 
                 (\ i x -> (get_button i x (25+(90*(modBy 4 i))) (100+(60*(i // 4))))) button_strings
 
-viewBox_height = 
-                     ((button_strings
-                  |> length
-                  |> toFloat) / 4
-                  |> ceiling) * 90
-                  |> String.fromInt
 
-
-top_box = [ 
-
-            rect
-              [ x "0"
-              , y "0"
-              , width "400"
-              , height viewBox_height
-              , fill "#9dd2ea"
-              ]
-              []
-
-         
-          , rect
-            [
-               x "100"
-             , y "10"
-             , width "280"
-             , height "60"
-             , rx "15"
-             , ry "15"
-             , class "screen"
-            ]
-            []    
-            
-        , rect
-            [
-               x "15"
-             , y "17"
-             , width "70"
-             , height "48"
-             , class "clear"
-             , onClick Clear
-            ]
-            []
-         , text_
-            [
-               x "50"
-            , y "40"
-            , fill "White"
-            , textAnchor "middle"
-            , fontSize "25"
-            , dominantBaseline "central"
-            ]
-            [text "C"]
-     ]
-
-final_list = List.foldl (\ x a -> a++x) top_box new_list
 
 get_button: Int -> String -> Int -> Int -> List (Svg Msg)
 get_button index name x_cord y_cord =
@@ -132,6 +79,59 @@ get_button index name x_cord y_cord =
                    [text name]
             ]
            
-calculator : List (Svg Msg)
-calculator = 
-              final_list
+get_calculator : List String -> List (Svg Msg)
+get_calculator button_strings = 
+              let
+                viewBox_height = 
+                     ((button_strings
+                  |> length
+                  |> toFloat) / 4
+                  |> ceiling) * 90
+                  |> String.fromInt
+
+                top_box = [ 
+                              rect
+                                [ x "0"
+                                , y "0"
+                                , width "400"
+                                , height viewBox_height
+                                , fill "#9dd2ea"
+                                ]
+                                []
+
+         
+                            , rect
+                              [
+                                 x "100"
+                               , y "10"
+                               , width "280"
+                               , height "60"
+                               , rx "15"
+                               , ry "15"
+                               , class "screen"
+                              ]
+                              []    
+            
+                           , rect
+                               [
+                                  x "15"
+                                , y "17"
+                                , width "70"
+                                , height "48"
+                                , class "clear"
+                                , onClick Clear
+                               ]
+                               []
+                            , text_
+                               [
+                                  x "50"
+                               , y "40"
+                               , fill "White"
+                               , textAnchor "middle"
+                               , fontSize "25"
+                               , dominantBaseline "central"
+                               ]
+                               [text "C"]
+                          ]
+              in
+              List.foldl (\ x a -> a++x) top_box (get_btn_layout  button_strings)

@@ -6,6 +6,7 @@ import Html.Attributes exposing (attribute)
 import Svg.Attributes exposing (..)
 import Svg exposing (..)
 import Calculator exposing (..)
+import List exposing (..)
 
 
 -- MAIN
@@ -184,6 +185,16 @@ stylesheet =
 
 view : Model -> Html (Msg)
 view model =
+              let
+                  button_strings = ["1", "2", "3", "+", "4", "5", "6", "-", "7", "8", "9", "x", "0", ".", "=", "/"]
+
+                  viewBox_height = 
+                                     ((button_strings
+                                  |> length
+                                  |> toFloat) / 4
+                                  |> ceiling) * 90
+                                  |> String.fromInt
+              in
               div([Html.Attributes.style "padding-left" "11cm"]++[Html.Attributes.style "padding-top" "2cm"])
               [ 
                   stylesheet
@@ -193,7 +204,7 @@ view model =
                  ,  height viewBox_height
                  ]
                  (
-                      calculator
+                      get_calculator button_strings
                   ++  [text_
                           [
                              x "350"
