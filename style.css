@@ -1,0 +1,60 @@
+.clear {
+    transition: fill 0.3s ease;
+    fill: #f68991;
+}
+
+.clear:hover {
+    cursor: pointer;
+    fill: #c8666c;
+}
+
+.btn {
+    transition: fill 0.3s ease;
+    fill: #ffffff;
+}
+
+.btn:hover {
+    cursor: pointer;
+    fill: #aaa1db;
+}
+
+.equal {
+    transition: fill 0.3s ease;
+    fill: rgb(235, 252, 105);
+}
+
+.equal:hover {
+    cursor: pointer;
+    fill: #aebd4b;
+}
+
+.operator {
+    transition: fill 0.3s ease;
+    fill: rgb(255, 165, 0);
+}
+
+.operator:hover {
+    cursor: pointer;
+    fill: rgb(255, 140, 0);
+}
+
+.screen {
+    fill : #888;
+    float: right;
+
+    padding: 0 10px;
+
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 3px;
+    
+    box-shadow: inset 0px 4px rgba(0, 0, 0, 0.2);
+
+    /* Typography */
+    font-size: 17px;
+    line-height: 40px;
+    color: white;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+    text-align: right;
+    letter-spacing: 1px;
+}
+
